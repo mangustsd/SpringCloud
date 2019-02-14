@@ -1,4 +1,5 @@
 package org.oleg.taco.controllers;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,5 +37,14 @@ public class DesignTacoController {
 		}
 		model.addAttribute("design", new Taco());
 		return "design";
+	}
+	public List<Ingredient> filterByType(List<Ingredient> ingredients, Type type) {
+		List<Ingredient> selectedIngredients = new ArrayList<Ingredient>();
+		for(Ingredient ingredient : ingredients) {
+			if(ingredient.getType().equals(type)) {
+				selectedIngredients.add(ingredient);
+			}
+		}
+		return selectedIngredients;
 	}
 }
