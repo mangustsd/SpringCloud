@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <link rel="stylesheet" th:href="@{/styles.css}" />
 <title>Taco Cloud</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
@@ -12,58 +13,47 @@
 	<img th:src="@{/images/Taco.png}" />
 
 	<form method="POST" th:object="${design}">
-		<div class="grid">
+
+		<div class="column">
 			<h3>Designate your wrap:</h3>
 			<div th:each="ingredient :${wrap}">
 				<input name="ingredients" type="checkbox"
 					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}"></span><br />
 			</div>
-		</div>
-
-		<div class="ingredient-group" id="proteins">
 			<h3>Pick your protein:</h3>
 			<div th:each="ingredient : ${protein}">
 				<input name="ingredients" type="checkbox"
 					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
-
 			</div>
-		</div>
-
-		<div class="ingredient-group" id="cheeses">
 			<h3>Choose your cheese:</h3>
 			<div th:each="ingredient : ${cheese}">
 				<input name="ingredients" type="checkbox"
 					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
 			</div>
 		</div>
-		</div>
-		</div>
-
-		<div class="ingredient-group" id="veggies">
+		<br>
+		<div class="column">
 			<h3>Choose your veggies:</h3>
 			<div th:each="ingredient : ${veggies}">
 				<input name="ingredients" type="checkbox"
 					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
 			</div>
-		</div>
-		</div>
-		</div>
 
-		<div class="ingredient-group" id="sauses">
 			<h3>Choose your sause:</h3>
-			<div th:each="ingredient : ${sause}">
+			<div th:each="ingredient : ${sauce}">
 				<input name="ingredients" type="checkbox"
 					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
 			</div>
 		</div>
-		<div>
-
-
+		<div class="column2">
 			<h3>Name your taco creation:</h3>
 			<input type="text" th:field="*{name}" />
 
 			<button>Submit your taco</button>
+
 		</div>
+		<br>
 	</form>
+
 </body>
 </html>

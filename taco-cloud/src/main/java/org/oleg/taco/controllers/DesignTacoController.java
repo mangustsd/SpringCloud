@@ -8,6 +8,7 @@ import org.oleg.taco.entity.Taco;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,6 +37,12 @@ public class DesignTacoController {
 		}
 		model.addAttribute("design", new Taco());
 		return "design";
+	}
+	@PostMapping
+	public String processDesign(Taco design) {
+		//Save the taco design
+		log.info("Processing design: " + design);
+		return "redirect:/orders/current";
 	}
 	
 }
