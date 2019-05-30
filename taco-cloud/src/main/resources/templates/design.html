@@ -11,48 +11,60 @@
 <body>
 	<h1>Design your taco!</h1>
 	<img th:src="@{/images/Taco.png}" />
-
 	<form method="POST" th:object="${design}">
-
-		<div class="column">
-			<h3>Designate your wrap:</h3>
-			<div th:each="ingredient :${wrap}">
-				<input name="ingredients" type="checkbox"
-					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}"></span><br />
+		<div class="grid">
+			<div class="column">
+				<div class="ingredient-group" id="wraps">
+					<h3>Designate your wrap:</h3>
+					<div th:each="ingredient :${wrap}">
+						<input name="ingredients" type="checkbox"
+							th:value="${ingredient.id}" /> <span
+							th:text="${ingredient.name}">INGREDIENT</span><br />
+					</div>
+					
+				</div>
+				<div class="ingredient-group" id="proteins">
+					<h3>Pick your protein:</h3>
+					<div th:each="ingredient : ${protein}">
+						<input name="ingredients" type="checkbox"
+							th:value="${ingredient.id}" /> <span
+							th:text="${ingredient.name}">INGREDIENT</span><br />
+					</div>
+				</div>
+				<div class="ingredient-group" id="cheeses">
+					<h3>Choose your cheese:</h3>
+					<div th:each="ingredient : ${cheese}">
+						<input name="ingredients" type="checkbox"
+							th:value="${ingredient.id}" /> <span
+							th:text="${ingredient.name}">INGREDIENT</span><br />
+					</div>
+				</div>
 			</div>
-			<h3>Pick your protein:</h3>
-			<div th:each="ingredient : ${protein}">
-				<input name="ingredients" type="checkbox"
-					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
+			<br>
+			<div class="column">
+				<div class="ingredient-group" id="veggies">
+					<h3>Determinate your veggies:</h3>
+					<div th:each="ingredient : ${veggies}">
+						<input name="ingredients" type="checkbox"
+							th:value="${ingredient.id}" /> <span
+							th:text="${ingredient.name}">INGREDIENT</span><br />
+					</div>
+				</div>
+				<div class="ingredient-group" id="sauces">
+					<h3>Select your sauce:</h3>
+					<div th:each="ingredient : ${sauce}">
+						<input name="ingredients" type="checkbox"
+							th:value="${ingredient.id}" /> <span
+							th:text="${ingredient.name}">INGREDIENT</span><br />
+					</div>
+				</div>
 			</div>
-			<h3>Choose your cheese:</h3>
-			<div th:each="ingredient : ${cheese}">
-				<input name="ingredients" type="checkbox"
-					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
+			<div class="column2">
+				<h3>Name your taco creation:</h3>
+				<input type="text" th:field="*{name}" />			
+				<button>Submit your taco</button>
 			</div>
 		</div>
-		<br>
-		<div class="column">
-			<h3>Choose your veggies:</h3>
-			<div th:each="ingredient : ${veggies}">
-				<input name="ingredients" type="checkbox"
-					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
-			</div>
-
-			<h3>Choose your sause:</h3>
-			<div th:each="ingredient : ${sauce}">
-				<input name="ingredients" type="checkbox"
-					th:value="${ingredient.id}" /> <span th:text="${ingredient.name}">INGREDIENT</span><br />
-			</div>
-		</div>
-		<div class="column2">
-			<h3>Name your taco creation:</h3>
-			<input type="text" th:field="*{name}" />
-
-			<button>Submit your taco</button>
-
-		</div>
-		<br>
 	</form>
 
 </body>
