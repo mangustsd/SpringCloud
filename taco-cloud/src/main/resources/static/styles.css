@@ -10,3 +10,6 @@
   width: 40%;
   padding: 30px;
 }
+.validationError{
+	color: red;	
+}
