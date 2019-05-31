@@ -7,10 +7,9 @@
 <title>Taco Cloud</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-
 <body>
 	<h1>Design your taco!</h1>
-	<img th:src="@{/images/Taco.png}" />
+	<img th:src="@{/images/Taco.jpg}" />
 	<form method="POST" th:object="${design}">
 		<div class="grid">
 			<div class="column">
@@ -20,9 +19,9 @@
 						<input name="ingredients" type="checkbox"
 							th:value="${ingredient.id}" /> <span
 							th:text="${ingredient.name}">INGREDIENT</span><br />
-					</div>
-					
+					</div>					
 				</div>
+				
 				<div class="ingredient-group" id="proteins">
 					<h3>Pick your protein:</h3>
 					<div th:each="ingredient : ${protein}">
@@ -31,6 +30,7 @@
 							th:text="${ingredient.name}">INGREDIENT</span><br />
 					</div>
 				</div>
+				
 				<div class="ingredient-group" id="cheeses">
 					<h3>Choose your cheese:</h3>
 					<div th:each="ingredient : ${cheese}">
@@ -38,9 +38,9 @@
 							th:value="${ingredient.id}" /> <span
 							th:text="${ingredient.name}">INGREDIENT</span><br />
 					</div>
-				</div>
+				</div>				
 			</div>
-			<br>
+			
 			<div class="column">
 				<div class="ingredient-group" id="veggies">
 					<h3>Determinate your veggies:</h3>
@@ -66,6 +66,5 @@
 			</div>
 		</div>
 	</form>
-
 </body>
 </html>
