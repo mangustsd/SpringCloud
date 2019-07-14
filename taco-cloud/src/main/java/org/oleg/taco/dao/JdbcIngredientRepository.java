@@ -3,15 +3,14 @@ package org.oleg.taco.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.oleg.taco.dao.interfaces.IngredientRepository;
+import org.oleg.taco.dao.interfaces.BasicIngredientRepository;
 import org.oleg.taco.entity.Ingredient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class JdbcIngredientRepository implements IngredientRepository {
+public class JdbcIngredientRepository implements BasicIngredientRepository{
 
 	private JdbcTemplate jdbc;
 

@@ -2,11 +2,10 @@ package org.oleg.taco.dao.interfaces;
 
 import org.oleg.taco.entity.Ingredient;
 
-public interface IngredientRepository {
+import org.springframework.data.repository.CrudRepository;
 
-	Iterable<Ingredient> findAll();
 
-	Ingredient findOne(String id);
+public interface IngredientRepository 
+		extends CrudRepository<Ingredient, String>{
 
-	Ingredient save(Ingredient ingredient);
 }

@@ -1,4 +1,4 @@
-package org.oleg.taco.web;
+package org.oleg.taco;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
