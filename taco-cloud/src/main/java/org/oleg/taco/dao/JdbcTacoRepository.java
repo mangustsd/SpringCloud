@@ -14,7 +14,7 @@ import org.springframework.stereotype.Repository;
 import org.oleg.taco.dao.interfaces.BasicTacoRepository;
 import org.oleg.taco.entity.Ingredient;
 import org.oleg.taco.entity.Taco;
-
+@Deprecated
 @Repository
 public class JdbcTacoRepository implements BasicTacoRepository{
 	

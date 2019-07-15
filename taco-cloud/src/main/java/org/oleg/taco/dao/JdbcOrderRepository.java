@@ -16,7 +16,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.oleg.taco.entity.Taco;
 import org.oleg.taco.dao.interfaces.BasicOrderRepository;
 import org.oleg.taco.entity.Order;
-
+@Deprecated
 @Repository
 public class JdbcOrderRepository implements BasicOrderRepository{
 
