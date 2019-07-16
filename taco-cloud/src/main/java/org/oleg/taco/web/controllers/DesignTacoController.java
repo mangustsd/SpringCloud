@@ -1,6 +1,7 @@
 package org.oleg.taco.web.controllers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.oleg.taco.dao.interfaces.IngredientRepository;
@@ -23,7 +24,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-
 @Controller
 @RequestMapping("/design")
 @SessionAttributes("order")
@@ -32,15 +32,19 @@ public class DesignTacoController {
 	private IngredientRepository ingredientRepository;
 	@Autowired
 	private TacoRepository designRepository;
-	
+
+	private boolean ingredientSaved = false;
+
 	@GetMapping
 	public String showDesignForm(Model model) {
+		if(!ingredientSaved) {
+			saveIngredients(ingredientRepository);
+		}
 		List<Ingredient> ingredients = new ArrayList<>();
-		ingredientRepository.findAll().forEach(i ->ingredients.add(i));
+		ingredientRepository.findAll().forEach(i -> ingredients.add(i));
 		Type[] types = Ingredient.Type.values();
-		for(Type type : types) {
-			model.addAttribute(type.toString().toLowerCase(),
-							   IngredientUtil.filterByType(ingredients,type));
+		for (Type type : types) {
+			model.addAttribute(type.toString().toLowerCase(), IngredientUtil.filterByType(ingredients, type));
 		}
 		model.addAttribute("design", new Taco());
 		return "design";
@@ -50,17 +54,15 @@ public class DesignTacoController {
 	public Order order() {
 		return new Order();
 	}
-	
+
 	@ModelAttribute(name = "taco")
 	public Taco taco() {
 		return new Taco();
 	}
-	
+
 	@PostMapping
-	public String processDesign(
-			@Valid Taco design, Errors errors,
-			@ModelAttribute Order order) {
-		
+	public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+
 		if (errors.hasErrors()) {
 			return "design";
 		}
@@ -68,5 +70,19 @@ public class DesignTacoController {
 		order.addDesign(saved);
 		return "redirect:/orders/current";
 	}
-
+	private void saveIngredients(IngredientRepository ingredientRepository) {
+		ingredientRepository.saveAll(
+				Arrays.asList(new Ingredient("FLTO", "Flour Tortilla", Type.WRAP),
+					new Ingredient("COTO", "Corn Tortilla", Type.WRAP),
+					new Ingredient("GRBF", "Ground Beef",  Type.PROTEIN),
+					new Ingredient("CARN", "Carnitas",  Type.PROTEIN),
+					new Ingredient("TMTO", "Diced Tomatoes",  Type.VEGGIES),
+					new Ingredient("LETC", "Lettuce",  Type.VEGGIES),
+					new Ingredient("CHED", "Cheddar", Type.CHEESE),
+					new Ingredient("JACK", "Monterrey Jack",  Type.CHEESE), 
+					new Ingredient("SLSA", "Salsa",  Type.SAUCE),
+					new Ingredient("SRCR", "Sour Cream",  Type.SAUCE)
+				));
+		ingredientSaved = true;
+	}
 }
